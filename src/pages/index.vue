@@ -28,8 +28,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 // import { mapState } from "pinia";
-// import { useAppStore } from "../../stores/AppStore";
-// import { useNodeStore } from "../../stores/NodeStore";
+// import { useAppStore } from "@/stores/AppStore";
+// import { useNodeStore } from "@/stores/NodeStore";
 
 export default defineComponent({
   name: "status",

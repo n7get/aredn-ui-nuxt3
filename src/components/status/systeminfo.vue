@@ -127,7 +127,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { useNodeStore } from "../../stores/NodeStore";
+import { useNodeStore } from "@/stores/NodeStore";
 import emitter from "@/services/emitter";
 
 export default defineComponent({
