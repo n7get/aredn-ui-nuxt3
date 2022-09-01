@@ -18,6 +18,9 @@
     <!-- <common-loader /> -->
     <!-- <common-error /> -->
     <!-- <common-apimismatch /> -->
+    <settings-ipaddresses />
+    <settings-location />
+    <settings-meshrf />
     <settings-system />
   </v-app>
 </template>

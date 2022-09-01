@@ -2,7 +2,7 @@
   <v-dialog v-model="showDialog" max-width="400">
     <v-card>
       <v-card-title>
-        <h2>System settings</h2>
+        <h2>Location settings</h2>
       </v-card-title>
       <v-card-text></v-card-text>
       <v-card-actions>
@@ -16,31 +16,31 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { SettingDialogs } from "@/types"
-import useOpenSettings from "@/use/openSettings"
+import { SettingDialogs } from "@/types";
+import useOpenSettings from "@/use/openSettings";
 
 export default defineComponent({
-  name: "SystemSettings",
+  name: "Location",
   setup() {
     const { closeSettings, onOpenSettings, showDialog } = useOpenSettings(
-      SettingDialogs.system
-    )
+      SettingDialogs.location
+    );
 
     function cancel() {
-      closeSettings()
+      closeSettings();
     }
 
     function save() {
-      closeSettings()
+      closeSettings();
     }
 
-    onOpenSettings()
+    onOpenSettings();
 
     return {
       cancel,
       save,
       showDialog,
-    }
+    };
   },
-})
+});
 </script>

@@ -128,31 +128,22 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useNodeStore } from "@/stores/NodeStore";
-import emitter from "@/services/emitter";
+import useToggleContent from "@/use/toggleContent"
+import useOpenSettings from "@/use/openSettings"
+import { SettingDialogs } from "@/types"
 
 export default defineComponent({
   name: "SystemInfo",
   setup() {
-    const nodeStore = useNodeStore();
+    const nodeStore = useNodeStore()
 
-    const showContent = ref(true);
-
-    function toggleContent() {
-      // $event.target.blur();
-      showContent.value = !showContent.value;
-    }
-
-    function openSettings() {
-      // $nuxt.$emit("show-system-setup")
-      emitter.emit("open-system-settings");
-    }
+    const { openSettings } = useOpenSettings(SettingDialogs.system)
 
     return {
+      ...useToggleContent(),
       openSettings,
-      showContent,
       sysinfo: nodeStore.sysinfo,
-      toggleContent,
-    };
+    }
   },
-});
+})
 </script>

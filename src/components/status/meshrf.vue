@@ -62,27 +62,22 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useNodeStore } from "@/stores/NodeStore";
+import useToggleContent from "@/use/toggleContent";
+import useOpenSettings from "@/use/openSettings";
+import { SettingDialogs } from "@/types";
 
 export default defineComponent({
-  name: 'MeshRF',
-  setup: () => {
+  name: "MeshRF",
+  setup() {
     const nodeStore = useNodeStore();
 
-    return { meshrf: nodeStore.meshrf };
-  },
-  data() {
+    const { openSettings } = useOpenSettings(SettingDialogs.mesh);
+
     return {
-      showContent: true,
+      ...useToggleContent(),
+      openSettings,
+      meshrf: nodeStore.meshrf,
     };
-  },
-  methods: {
-    toggleContent() {
-      // $event.target.blur()
-      this.showContent = !this.showContent;
-    },
-    openSettings() {
-      // $nuxt.$emit("show-mesh-setup")
-    },
   },
 });
 </script>

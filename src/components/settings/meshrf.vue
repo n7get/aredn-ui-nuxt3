@@ -2,7 +2,7 @@
   <v-dialog v-model="showDialog" max-width="400">
     <v-card>
       <v-card-title>
-        <h2>System settings</h2>
+        <h2>Mesh settings</h2>
       </v-card-title>
       <v-card-text></v-card-text>
       <v-card-actions>
@@ -20,10 +20,10 @@ import { SettingDialogs } from "@/types"
 import useOpenSettings from "@/use/openSettings"
 
 export default defineComponent({
-  name: "SystemSettings",
+  name: "MeshRfSettings",
   setup() {
     const { closeSettings, onOpenSettings, showDialog } = useOpenSettings(
-      SettingDialogs.system
+      SettingDialogs.mesh
     )
 
     function cancel() {

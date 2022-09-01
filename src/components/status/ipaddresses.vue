@@ -62,27 +62,22 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useNodeStore } from "@/stores/NodeStore";
+import useToggleContent from "@/use/toggleContent";
+import useOpenSettings from "@/use/openSettings";
+import { SettingDialogs } from "@/types";
 
 export default defineComponent({
-  name: 'IPAddresses',
-  setup: () => {
+  name: "IPAddresses",
+  setup() {
     const nodeStore = useNodeStore();
 
-    return { ip: nodeStore.ip };
-  },
-  data() {
+    const { openSettings } = useOpenSettings(SettingDialogs.ipaddresses);
+
     return {
-      showContent: true,
+      ...useToggleContent(),
+      openSettings,
+      ip: nodeStore.ip,
     };
-  },
-  methods: {
-    toggleContent() {
-      // $event.target.blur()
-      this.showContent = !this.showContent;
-    },
-    openSettings() {
-      //   $nuxt.$emit("show-ipaddresses-setup")
-    },
   },
 });
 </script>

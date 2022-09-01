@@ -55,27 +55,22 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useNodeStore } from "@/stores/NodeStore";
+import useToggleContent from "@/use/toggleContent";
+import useOpenSettings from "@/use/openSettings";
+import { SettingDialogs } from "@/types";
 
 export default defineComponent({
   name: "Location",
-  setup: () => {
+  setup() {
     const nodeStore = useNodeStore();
 
-    return { location: nodeStore.location };
-  },
-  data() {
+    const { openSettings } = useOpenSettings(SettingDialogs.location);
+
     return {
-      showContent: true,
+      ...useToggleContent(),
+      openSettings,
+      location: nodeStore.location,
     };
-  },
-  methods: {
-    toggleContent() {
-      // $event.target.blur()
-      this.showContent = !this.showContent;
-    },
-    openSettings() {
-      // $nuxt.$emit("show-location-setup")
-    },
   },
 });
 </script>

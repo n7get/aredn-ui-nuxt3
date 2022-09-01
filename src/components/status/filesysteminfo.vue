@@ -55,33 +55,28 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useNodeStore } from "@/stores/NodeStore";
+import useToggleContent from "@/use/toggleContent";
 
 export default defineComponent({
-  name: 'FilesystemInfo',
-  setup: () => {
+  name: "FilesystemInfo",
+  setup() {
     const nodeStore = useNodeStore();
+    const storage = nodeStore.storage;
 
-    return { storage: nodeStore.storage };
-  },
-  data() {
-    return {
-      showContent: true,
-    };
-  },
-  methods: {
-    toggleContent() {
-      // $event.target.blur()
-      this.showContent = !this.showContent;
-    },
-  },
-  computed: {
-    rootpctfree() {
+    const rootpctfree = computed(() => {
       // eslint-disable-next-line prettier/prettier
-      return ((this.storage.rootfree / this.storage.roottotal) * 100).toFixed(3);
-    },
-    tmppctfree() {
-      return ((this.storage.tmpfree / this.storage.tmptotal) * 100).toFixed(3);
-    },
+      return ((storage.rootfree / storage.roottotal) * 100).toFixed(3);
+    });
+    const tmppctfree = computed(() => {
+      return ((storage.tmpfree / storage.tmptotal) * 100).toFixed(3);
+    });
+
+    return {
+      ...useToggleContent(),
+      rootpctfree,
+      tmppctfree,
+      storage,
+    };
   },
 });
 </script>
